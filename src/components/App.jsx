@@ -2,6 +2,8 @@ import exampleVideoData from '/src/data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoListEntry from './VideoListEntry.js';
 import VideoPlayer from './VideoPlayer.js';
+import Search from "./Search.js"
+import searchYouTube from "../lib/searchYouTube.js"
 
 const {useState} = React;
 
@@ -9,19 +11,26 @@ var App = () => {
   // this will grab the etag of first object
   // const [list, setList] = useState([exampleVideoData[0].etag]);
 
-  const [list, setList] = useState(exampleVideoData);
+  const [list, setList] = useState([]);
 
   const [oneVideo, setVideo] = useState(exampleVideoData[0]);
 
-  // const handler = useCallback(() => {
-  //   setVideo((t) => [list[1]]);
-  // }, [oneVideo]);
+  let timeout = null;
+  const searchHandler = (e) => {
+    let query = e.target.value;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      searchYouTube(query, (videos => {
+        setList(videos)
+      }))
+    }, 5000);
+  }
 
   return (
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em> view goes here</h5></div>
+          <Search searchHandler={(e) => searchHandler(e)}/>
         </div>
       </nav>
       <div className="row">
