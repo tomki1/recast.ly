@@ -11,7 +11,7 @@ var VideoList = (props) => {
   // console.log(props.state1);//logs this state's video
   return (
   <div className="video-list">
-    {props.videos.map((video, index) => <VideoListEntry video={video} key={index} setVideo={props.setVideo}/>)}
+    {props.videos.map((video, index) => <VideoListEntry video={video} key={index} setVideo={(v) => {props.setVideo(v)}}/>)}
   </div>
   )
 };

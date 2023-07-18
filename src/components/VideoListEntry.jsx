@@ -1,7 +1,4 @@
-const {useState} = React;
-
 var VideoListEntry = (props) => {
-
 
   // const [isClicked, setIsClicked] = useState(0);
   // console.log(props);
@@ -15,7 +12,7 @@ var VideoListEntry = (props) => {
       <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
     </div>
     <div className="media-body">
-      <div className="video-list-entry-title" onClick={() => {  props.setVideo(props.video);}}
+      <div className="video-list-entry-title" onClick={() => {  props.setVideo(props.video)}}
     >{props.video.snippet.title}</div>
     {/* <div className="media-body">
       <div className="video-list-entry-title" onClick={() => {handler; setIsClicked(isClicked+1)}}

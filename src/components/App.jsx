@@ -4,16 +4,14 @@ import VideoListEntry from './VideoListEntry.js';
 import VideoPlayer from './VideoPlayer.js';
 
 const {useState} = React;
-const {useCallback} = React;
-
 
 var App = () => {
   // this will grab the etag of first object
   // const [list, setList] = useState([exampleVideoData[0].etag]);
 
-  const [list, setList] = useState([...exampleVideoData]);
+  const [list, setList] = useState(exampleVideoData);
 
-  const [oneVideo, setVideo] = useState(list[0]);
+  const [oneVideo, setVideo] = useState(exampleVideoData[0]);
 
   // const handler = useCallback(() => {
   //   setVideo((t) => [list[1]]);
@@ -28,11 +26,11 @@ var App = () => {
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <VideoPlayer videos={oneVideo} />
+          <VideoPlayer video={oneVideo} />
         </div>
         <div className="col-md-5">
           {/* {list} */}
-        <VideoList videos={list} setVideo={setVideo}/>
+        <VideoList videos={list} setVideo={(v) =>{setVideo(v)}}/>
         </div>
       </div>
     </div>
