@@ -32,7 +32,7 @@ var App = () => {
         </div>
         <div className="col-md-5">
           {/* {list} */}
-        <VideoList videos={list} state1={oneVideo} setVideo={setVideo}/>
+        <VideoList videos={list} setVideo={setVideo}/>
         </div>
       </div>
     </div>

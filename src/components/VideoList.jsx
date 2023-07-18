@@ -9,8 +9,6 @@ var VideoList = (props) => {
   //   <div><h5><em>videoListEntry</em> view goes here</h5></div>
   // </div>
   // console.log(props.state1);//logs this state's video
-  // props.setVideo(props.videos[1]);
-  // setState1 = props.setState
   return (
   <div className="video-list">
     {props.videos.map((video, index) => <VideoListEntry video={video} key={index} setVideo={props.setVideo}/>)}
