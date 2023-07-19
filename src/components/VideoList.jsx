@@ -1,17 +1,10 @@
 import VideoListEntry from './VideoListEntry.js';
 
 
-var VideoList = (props) => {
-  // <div className="video-list">
-  //   <div><h5>{props.videos[0].etag}</h5></div>
-  //   <div><h5><em>videoListEntry</em> view goes here</h5></div>
-  //   <div><h5><em>videoListEntry</em> view goes here</h5></div>
-  //   <div><h5><em>videoListEntry</em> view goes here</h5></div>
-  // </div>
-  // console.log(props.state1);//logs this state's video
+var VideoList = ({videos, handleVideoListEntryTitleClick}) => {
   return (
   <div className="video-list">
-    {props.videos.map((video, index) => <VideoListEntry video={video} key={index} setVideo={(v) => {props.setVideo(v)}}/>)}
+    {videos.map((video, index) => <VideoListEntry video={video} key={index} handleVideoListEntryTitleClick={handleVideoListEntryTitleClick}/>)}
   </div>
   )
 };

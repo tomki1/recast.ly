@@ -5,32 +5,42 @@ import VideoPlayer from './VideoPlayer.js';
 import Search from "./Search.js"
 import searchYouTube from "../lib/searchYouTube.js"
 
-const {useState} = React;
+const {useState, useEffect} = React;
 
 var App = () => {
-  // this will grab the etag of first object
-  // const [list, setList] = useState([exampleVideoData[0].etag]);
-
-  const [list, setList] = useState([]);
-
+  const [videos, setVideos] = useState([]);
   const [oneVideo, setVideo] = useState(exampleVideoData[0]);
 
   let timeout = null;
-  const searchHandler = (e) => {
-    let query = e.target.value;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      searchYouTube(query, (videos => {
-        setList(videos)
-      }))
-    }, 5000);
-  }
+  // const searchHandler = (query) => {
+  //     clearTimeout(timeout);
+  //     timeout = setTimeout(() => {
+  //       searchYouTube(query, (videos => {
+  //       setVideo(videos[0]);
+  //       setVideos(videos);
+  //     }))
+  //   }, 5000);
+  // }
+
+  const searchHandler = (query) => {
+    searchYouTube(query, (videos) => {
+      setVideo(videos[0]);
+      setVideos(videos);
+    });
+  };
+const handleVideoListEntryTitleClick = (video) => {
+  setVideo(video);
+};
+
+useEffect(function () {
+  searchHandler("react tutorials");
+}, []);
 
   return (
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <Search searchHandler={(e) => searchHandler(e)}/>
+          <Search handleSearchInputChange={searchHandler}/>
         </div>
       </nav>
       <div className="row">
@@ -39,7 +49,7 @@ var App = () => {
         </div>
         <div className="col-md-5">
           {/* {list} */}
-        <VideoList videos={list} setVideo={(v) =>{setVideo(v)}}/>
+        <VideoList videos={videos} handleVideoListEntryTitleClick={handleVideoListEntryTitleClick} />
         </div>
       </div>
     </div>
